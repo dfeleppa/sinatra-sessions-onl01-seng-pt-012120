@@ -9,6 +9,18 @@ class App < Sinatra::Base
   before do
     content_type :txt
   end
+   configure do
+    enable :sessions unless test?	    enable :sessions unless test?
+    set :session_secret, "secret"	    set :session_secret, "secret"
+@@ -20,6 +21,7 @@ class App < Sinatra::Base
+
+
+  get '/set' do	  get '/set' do
+    # set the :foo key of the session hash equal to 'hello' here!	    # set the :foo key of the session hash equal to 'hello' here!
+    session[:foo] = "hello"
+    if session[:foo] == 'hello'	    if session[:foo] == 'hello'
+      redirect '/fetch'	      redirect '/fetch'
+    else	    else
 
   get '/' do
     "Welcome to Sinatra Sessions! In this lab, we will be learning about the general principles behind a sessions cookie. In order to proceed, let's go to the '/first_exercise' path."
